@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import Player from "/player.js";
+import Player from "./player.js";
 import GLOBALS from "./globals.js";
 import "./controls.js";
 import Enemy from "./enemies.js";
