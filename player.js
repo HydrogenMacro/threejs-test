@@ -1,10 +1,14 @@
 import * as THREE from "three";
 
 const Player = {
-	body: new THREE.BoxGeometry(1, 1),
-	material: new THREE.MeshBasicMaterial({ color: 0xF0F00F }),
-	mesh: null,
+  mesh: new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xf0f00f })
+  ),
+  speed: .1,
+  move(direction) {
+	this.mesh.position.add(direction);
+  },
+  moveDirection: new THREE.Vector3(0, 0, 0)
 };
-Player.mesh = new THREE.Mesh(Player.body, Player.material);
-
 export default Player;

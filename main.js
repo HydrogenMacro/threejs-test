@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Player from "/player.js";
 import GLOBALS from "./globals.js";
+import "./controls.js";
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(
   window.innerWidth * GLOBALS.canvasScale,
@@ -12,7 +13,6 @@ const camera = new THREE.PerspectiveCamera(75,
 	0.1,
 	1000
 );
-camera.position.x = 10;
 camera.position.y = 10;
 camera.position.z = 5;
 camera.lookAt(Player.mesh.position);
@@ -31,3 +31,7 @@ scene.add(Player.mesh);
 renderer.domElement.style.width = renderer.domElement.style.height = "100%";
 document.body.appendChild(renderer.domElement);
 renderer.render(scene, camera);
+renderer.setAnimationLoop(() => {
+	Player.move(Player.moveDirection.clone().multiplyScalar(Player.speed));
+	renderer.render(scene, camera);
+});
